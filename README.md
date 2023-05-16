@@ -99,6 +99,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.function.*;
 
 public class PoliceStation {
 
@@ -107,21 +108,7 @@ public class PoliceStation {
     public static final List<PoliceDog> dogs = new ArrayList<>();
     public static List<Jail> jails = new ArrayList<>();
 
-    public static void addPerson(Person p) {
-        try {
-            PersonType type = getTypeOfPerson(p);
-            type.addPerson(p);
-            persons.add(p);
-        } catch (PersonTypeException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-
-    public void removePerson(Person p) {
-        persons.removeIf(person -> person.getName().equals(p.getName()));
-    }
-
-    private static PersonType getTypeOfPerson(Person p) throws PersonTypeException {
+    private static final Function<Person, PersonType> getTypeOfPerson = p -> {
         switch (p.getClass().getSimpleName()) {
             case "Officer":
                 return PersonType.OFFICER;
@@ -130,8 +117,34 @@ public class PoliceStation {
             case "Victim":
                 return PersonType.VICTIM;
             default:
-                throw new PersonTypeException("Invalid person type.");
+                try {
+                    throw new PersonTypeException("Invalid person type.");
+                } catch (PersonTypeException e) {
+                    throw new RuntimeException(e);
+                }
         }
+    };
+
+    private static PersonType getTypeOfPerson(Person p) throws PersonTypeException {
+        return getTypeOfPerson.apply(p);
+    }
+
+    public static Consumer<Person> addPerson = (Person p) -> {
+        try {
+            PersonType type = getTypeOfPerson(p);
+            type.addPerson(p);
+            persons.add(p);
+        } catch (PersonTypeException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    };
+
+    public static void addPerson(Person p) {
+        addPerson.accept(p);
+    }
+
+    public void removePerson(Person p) {
+        persons.removeIf(person -> person.getName().equals(p.getName()));
     }
 
     public enum PersonType {
@@ -170,13 +183,12 @@ public class PoliceStation {
         public <T extends Person> T getPersonByName(String name) {
             return (T) personSet.stream()
                     .filter(p -> p.getName().equals(name))
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst().orElse(null);
         }
     }
 
     public void printAllPersons() {
-        persons.forEach(person -> System.out.println(person));
+        persons.forEach((Consumer<Person>) person -> System.out.println(person));
     }
 
     public void addCase(Case c) {
