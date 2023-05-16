@@ -83,7 +83,7 @@ public class LogReader {
 
 I’d like to note that I made 4 complex enums already and 2 custom lambda functions with generics. I don’t recall how many lambda functions from utils I used, so I’ll make some.
 
-I added 3 lambda functions from utils to PoliceStation.java and there are already 2 streams:
+I added 3 lambda functions from utils to PoliceStation.java. There are two "forEach" terminal stream operations in the code. Additionally, there are collection streamings under getPersonByName and printReport with terminal and non-terminal operations.
 
 ```
 package com.laba.solvd.hw;
