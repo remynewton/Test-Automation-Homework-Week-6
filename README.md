@@ -273,35 +273,38 @@ public class Jail implements IJail {
             printError.accept(e.getMessage());
             moveToHoldingCell.apply(criminal);
         }
-    }    
+    }
 
     @Override
     public boolean removeInmate(Criminal criminal) throws InmateNotFoundException {
-        if (inmates.remove(criminal)) {
+        boolean foundInThisJail = inmates.remove(criminal);
+        if (foundInThisJail) {
             return true;
         }
-    
+
         printError.accept("The specified inmate was not found in this jail.");
         System.out.print("Do you want to remove that inmate from all jails, including the holding cell? (yes/no): ");
-    
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine().trim().toLowerCase();
         scanner.close();
-    
+
         if (input.equals("yes")) {
-            for (Jail jail : PoliceStation.jails) {
-                if (jail.getInmates().contains(criminal)) {
-                    jail.inmates.remove(criminal);
-                }
+            boolean removedFromAllJails = PoliceStation.jails.stream()
+                    .filter(jail -> jail.getInmates().contains(criminal))
+                    .peek(jail -> jail.getInmates().remove(criminal))
+                    .count() > 0;
+            boolean removedFromHoldingCell = holdingCell.removeInmate(criminal);
+            if (removedFromAllJails || removedFromHoldingCell) {
+                throw new InmateNotFoundException("The inmate has been removed from all jails, including the holding cell.");
             }
-            holdingCell.removeInmate(criminal);
-            throw new InmateNotFoundException("The inmate has been removed from all jails, including the holding cell.");
         } else if (input.equals("no")) {
             return false;
         } else {
             printError.accept("Invalid input. Please enter either 'yes' or 'no'.");
             return removeInmate(criminal);
         }
+        return false;
     }
 }
 ```
