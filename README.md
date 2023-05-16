@@ -184,7 +184,7 @@ public class PoliceStation {
 }
 ```
 
-I also added to lambda functions from utils to Jail.java:
+I also added 2 lambda functions from utils to Jail.java:
 
 ```
 package com.laba.solvd.hw.Jail;
