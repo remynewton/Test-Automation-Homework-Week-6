@@ -3,18 +3,26 @@
 My mentor gave me the following assessment of how much my code has completed all of the homeworks prior and current:
 
 hw 2 (hierarchy) - done
+
 hw 3 (abstract) - add logic for working with 5 protected fields
+
 hw 4 (interface) -Create final class, method, variable.
 Create a static block, method, variable.
+
 hw 5 (exceprions)
 Use try-catch with resources.
+
 hw 6 (collections) - done
+
 hw 7 (maven) - done
+
 hw 8 (utils) - done
+
 hw 9 (lambda, enums)  - enums
 Use at least 5 lambda functions from the java.util.function package.
 Create 3 custom Lambda functions with generics.
 Create 5 complex Enums(with fields, methods, blocks).
+
 hw 10 (streaming collections)
 Add 7 collection streaming in the hierarchy with terminal and non-terminal operations.
 Using reflection extract information(modifiers, return types, parameters, etc) about fields, constructors, methods. Create object and call method using the only reflection.
