@@ -204,7 +204,7 @@ public class PoliceStation {
 }
 ```
 
-I also added 2 lambda functions from utils to Jail.java:
+I also added 2 lambda functions from utils to Jail.java as well as a collection streaming under removeInmate:
 
 ```
 package com.laba.solvd.hw.Jail;
@@ -307,4 +307,13 @@ public class Jail implements IJail {
         return false;
     }
 }
+```
+
+I also refactored the getSeverity method Case.java to use a collection streaming.
+```
+public int getSeverity() {
+        return suspect.getCrimes().stream()
+                .mapToInt(crime -> crime.getSeverity().ordinal())
+                .sum();
+    }
 ```
