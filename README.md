@@ -317,3 +317,10 @@ public int getSeverity() {
                 .sum();
     }
 ```
+
+# What I still need to do:
+
+1. Using reflection extract information(modifiers, return types, parameters, etc) about fields, constructors, methods. Create object and call method using the only reflection.
+2. Add 3 more collection streamings in the hierarchy with terminal and non-terminal operations.
+3. Add 1 custom lambda function with generics.
+4. Add 1 complex Enums(with fields, methods, blocks)
