@@ -71,6 +71,217 @@ public class LogReader {
 }
 ```
 
-# For Homeowork 9
+# For Homeowork 9 & 10
 
 I’d like to note that I made 4 complex enums already and 2 custom lambda functions with generics. I don’t recall how many lambda functions from utils I used, so I’ll make some.
+
+I added 3 lambda functions from utils to PoliceStation.java and there are already 2 streams:
+
+```
+package com.laba.solvd.hw;
+
+import com.laba.solvd.hw.Beast.PoliceDog;
+import com.laba.solvd.hw.Case.*;
+import com.laba.solvd.hw.Jail.Jail;
+import com.laba.solvd.hw.Person.*;
+import com.laba.solvd.hw.Exception.PersonTypeException;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class PoliceStation {
+
+    private final Set<Case> solvedCases = new HashSet<>();
+    private static final Set<Person> persons = new HashSet<>();
+    public static final List<PoliceDog> dogs = new ArrayList<>();
+    public static List<Jail> jails = new ArrayList<>();
+
+    public static void addPerson(Person p) {
+        try {
+            PersonType type = getTypeOfPerson(p);
+            type.addPerson(p);
+            persons.add(p);
+        } catch (PersonTypeException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void removePerson(Person p) {
+        persons.removeIf(person -> person.getName().equals(p.getName()));
+    }
+
+    private static PersonType getTypeOfPerson(Person p) throws PersonTypeException {
+        switch (p.getClass().getSimpleName()) {
+            case "Officer":
+                return PersonType.OFFICER;
+            case "Criminal":
+                return PersonType.CRIMINAL;
+            case "Victim":
+                return PersonType.VICTIM;
+            default:
+                throw new PersonTypeException("Invalid person type.");
+        }
+    }
+
+    public enum PersonType {
+        OFFICER("Officer", new HashSet<Officer>()),
+        CRIMINAL("Criminal", new HashSet<Criminal>()),
+        VICTIM("Victim", new HashSet<Victim>());
+
+        private final String type;
+        private final Set<Person> personSet;
+
+        private PersonType(String type, Set<? extends Person> personSet) {
+            this.type = type;
+            this.personSet = (Set<Person>) personSet;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public Set<Person> getPersonSet() {
+            return personSet;
+        }
+
+        public void addPerson(Person person) {
+            personSet.add(person);
+        }
+
+        public void removePerson(Person person) {
+            personSet.remove(person);
+        }
+
+        public boolean containsPerson(Person person) {
+            return personSet.contains(person);
+        }
+
+        public <T extends Person> T getPersonByName(String name) {
+            return (T) personSet.stream()
+                    .filter(p -> p.getName().equals(name))
+                    .findFirst()
+                    .orElse(null);
+        }
+    }
+
+    public void printAllPersons() {
+        persons.forEach(person -> System.out.println(person));
+    }
+
+    public void addCase(Case c) {
+        solvedCases.add(c);
+    }
+
+    public void printReport() {
+        List<Case> solvedCases = this.solvedCases.stream()
+                .filter(c -> c.checkSolved())
+                .collect(Collectors.toList());
+        solvedCases.forEach(System.out::println);
+    }
+}
+```
+
+I also added to lambda functions from utils to Jail.java:
+
+```
+package com.laba.solvd.hw.Jail;
+
+import com.laba.solvd.hw.Person.Criminal;
+import com.laba.solvd.hw.Exception.InmateNotFoundException;
+import com.laba.solvd.hw.Exception.JailFullException;
+import com.laba.solvd.hw.PoliceStation;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+public class Jail implements IJail {
+    private ArrayList<Criminal> inmates = new ArrayList<>();
+    private int capacity;
+    protected static int totalJails;
+    HoldingCell holdingCell = HoldingCell.getInstance();
+
+    private Consumer<String> printError = (msg) -> System.out.println(msg);
+    private Function<Criminal, Void> moveToHoldingCell = (criminal) -> {
+        holdingCell.addInmate(criminal);
+        return null;
+    };
+
+    public Jail(int capacity) {
+        if (capacity < 1) {
+            throw new IllegalArgumentException("Capacity must be greater than zero!");
+        }
+        this.capacity = capacity;
+        PoliceStation.jails.add(this);
+        totalJails = PoliceStation.jails.size();
+    }
+
+    public static int getTotalJails() {
+        return totalJails;
+    }
+
+    @Override
+    public ArrayList<Criminal> getInmates() {
+        return inmates;
+    }
+
+    @Override
+    public void setInmates(ArrayList<Criminal> inmates) {
+        this.inmates = inmates;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    @Override
+    public void addInmate(Criminal criminal) {
+        try {
+            if (inmates.size() < capacity) {
+                inmates.add(criminal);
+            } else {
+                throw new JailFullException();
+            }
+        } catch (JailFullException e) {
+            printError.accept(e.getMessage());
+            moveToHoldingCell.apply(criminal);
+        }
+    }    
+
+    @Override
+    public boolean removeInmate(Criminal criminal) throws InmateNotFoundException {
+        if (inmates.remove(criminal)) {
+            return true;
+        }
+    
+        printError.accept("The specified inmate was not found in this jail.");
+        System.out.print("Do you want to remove that inmate from all jails, including the holding cell? (yes/no): ");
+    
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine().trim().toLowerCase();
+        scanner.close();
+    
+        if (input.equals("yes")) {
+            for (Jail jail : PoliceStation.jails) {
+                if (jail.getInmates().contains(criminal)) {
+                    jail.inmates.remove(criminal);
+                }
+            }
+            holdingCell.removeInmate(criminal);
+            throw new InmateNotFoundException("The inmate has been removed from all jails, including the holding cell.");
+        } else if (input.equals("no")) {
+            return false;
+        } else {
+            printError.accept("Invalid input. Please enter either 'yes' or 'no'.");
+            return removeInmate(criminal);
+        }
+    }
+}
+```
