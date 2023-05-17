@@ -324,3 +324,199 @@ public int getSeverity() {
 2. Add 3 more collection streamings in the hierarchy with terminal and non-terminal operations.
 3. Add 1 custom lambda function with generics.
 4. Add 1 complex Enums(with fields, methods, blocks)
+
+# Part 2
+
+I added an Rank complex enum to Officer.java:
+```
+package com.laba.solvd.hw.Person;
+
+public class Officer extends Person {
+    private int badgeNumber;
+    private Rank rank;
+
+    private Officer(String name, String DOB, String address, int badgeNumber, Rank rank) {
+        super(name, DOB, address);
+        this.badgeNumber = badgeNumber;
+        this.rank = rank;
+    }
+
+    public int getBadgeNumber() {
+        return badgeNumber;
+    }
+
+    public void setBadgeNumber(int badgeNumber) {
+        this.badgeNumber = badgeNumber;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    @Override
+    public String getProfile() {
+        return "Officer " + getName() + " (" + getRank() + "), Badge #" + getBadgeNumber();
+    }
+
+    @Override
+    public String toString() {
+        return getProfile();
+    }
+
+    @Override
+    public int hashCode() {
+        return getProfile().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Officer) {
+            Officer otherOfficer = (Officer) obj;
+            return getProfile().equals(otherOfficer.getProfile());
+        }
+        return false;
+    }
+
+    public enum Rank {
+        PATROL("Patrol", 0),
+        CONSTABLE("Constable", 1),
+        SERGEANT("Sergeant", 2),
+        LIEUTENANT("Lieutenant", 3),
+        CAPTAIN("Captain", 4);
+
+        private final String label;
+        private final int level;
+
+        Rank(String label, int level) {
+            this.label = label;
+            this.level = level;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public boolean isHigherThan(Rank otherRank) {
+            return this.level > otherRank.level;
+        }
+    }
+}
+```
+
+I also extracted info in the Main class about the Officer class and created an object and call method using the only reflection. I changed the constructor for Officer.java to private for demonstration purposes.
+
+```
+package com.laba.solvd;
+import com.laba.solvd.hw.*;
+import com.laba.solvd.hw.Beast.PoliceDog;
+import com.laba.solvd.hw.Case.*;
+import com.laba.solvd.hw.Exception.LogReaderException;
+import com.laba.solvd.hw.Jail.Jail;
+import com.laba.solvd.hw.Person.*;
+import org.apache.log4j.PropertyConfigurator;
+import java.io.*;
+import org.apache.log4j.Logger;
+import java.util.*;
+import java.lang.reflect.*;
+
+import static com.laba.solvd.hw.Beast.PoliceDog.Breed.GERMAN_SHEPHERD;
+import static com.laba.solvd.hw.PoliceStation.dogs;
+
+public class Main {
+    private static Logger logger = Logger.getLogger(Main.class);
+    public static void main(String[] args) throws InterruptedException, IOException, LogReaderException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        PropertyConfigurator.configure("src/main/resources/log4j.properties");
+        Class<?> officerClass = Officer.class;
+        // Extract information about fields
+        Field[] fields = officerClass.getDeclaredFields();
+        for (Field field : fields) {
+            int modifiers = field.getModifiers();
+            String fieldName = field.getName();
+            String fieldType = field.getType().getSimpleName();
+            logger.info("Field: " + Modifier.toString(modifiers) + " " + fieldType + " " + fieldName);
+        }
+        // Extract information about constructors
+        Constructor<?>[] constructors = officerClass.getDeclaredConstructors();
+        for (Constructor<?> constructor : constructors) {
+            int modifiers = constructor.getModifiers();
+            String constructorName = constructor.getName();
+            Parameter[] parameters = constructor.getParameters();
+
+            StringBuilder parameterTypes = new StringBuilder();
+            for (Parameter parameter : parameters) {
+                parameterTypes.append(parameter.getType().getSimpleName()).append(", ");
+            }
+            if (parameterTypes.length() > 0) {
+                parameterTypes.setLength(parameterTypes.length() - 2);
+            }
+
+            logger.info("Constructor: " + Modifier.toString(modifiers) + " " + constructorName + "(" + parameterTypes + ")");
+        }
+        // Extract information about methods
+        Method[] methods = officerClass.getDeclaredMethods();
+        for (Method method : methods) {
+            int modifiers = method.getModifiers();
+            String methodName = method.getName();
+            String returnType = method.getReturnType().getSimpleName();
+            Parameter[] parameters = method.getParameters();
+
+            StringBuilder parameterTypes = new StringBuilder();
+            for (Parameter parameter : parameters) {
+                parameterTypes.append(parameter.getType().getSimpleName()).append(", ");
+            }
+            if (parameterTypes.length() > 0) {
+                parameterTypes.setLength(parameterTypes.length() - 2);
+            }
+
+            logger.info("Method: " + Modifier.toString(modifiers) + " " + returnType + " " + methodName + "(" + parameterTypes + ")");
+        }
+        Constructor<?> officerConstructor = officerClass.getDeclaredConstructor(String.class, String.class, String.class, int.class, Officer.Rank.class);
+        officerConstructor.setAccessible(true);
+        Officer officer1 = (Officer) officerConstructor.newInstance("John Doe", "06/12/1981", "123 Main St", 12345, Officer.Rank.PATROL);
+        Method getProfileMethod = officerClass.getDeclaredMethod("getProfile");
+        String profile = (String) getProfileMethod.invoke(officer1);
+        logger.info("Officer profile: " + profile);
+        List<String> trainings1 = Arrays.asList("Patrol");
+        PoliceDog patroldog1 = new PoliceDog("Fido", "05/17/2019", true, GERMAN_SHEPHERD, trainings1);
+        dogs.add(patroldog1);
+        PoliceDog dog1 = PoliceDog.findElement(dogs, dog -> dog.getBreed() == GERMAN_SHEPHERD);
+        if (dog1 != null) {
+            logger.info(String.format("Found a German Shepherd: " + dog1.getName()));
+        } else {
+            logger.info(String.format("Could not find a German Shepherd."));
+        }
+        ArrayList<ICrime> crimes1 = new ArrayList<>();
+        crimes1.add(new Crime(Crime.Type.JAVA_INSTR));
+        Criminal criminal1 = new Criminal("Andrei Trukhanovich", "07/17/1991", "456 Elm St", crimes1);
+        Victim victim1 = new Victim("Remy Newton", "05/22/1997", "789 Oak Ave", "9876");
+        Case case1 = new Case("repeated Java instruction", officer1, criminal1, victim1, false);
+        PoliceStation station = new PoliceStation();
+        UnsolvedCases<Case> unsolvedCases = new UnsolvedCases<>();
+        unsolvedCases.add(case1);
+        Jail jail1 = new Jail(50);
+        PoliceStation.addPerson(officer1);
+        PoliceStation.addPerson(criminal1);
+        PoliceStation.addPerson(victim1);
+
+        logger.info(String.format("Officer %s from %s department is investigating a case of %s. That's %s.", officer1.getName(), officer1.getRank(), case1.getDescription(), officer1.getProfile()));
+        logger.info(String.format("The victim of the crime is %s.", victim1.getProfile()));
+        logger.info(String.format("Officer %s uses his trusty police dog %s to patrol the area for the criminal.", officer1.getName(), patroldog1.getName()));
+        logger.info(patroldog1.patrol());
+        logger.info(String.format("The officer has apprehended the criminal. %s", criminal1.getProfile()));
+        jail1.addInmate(criminal1);
+        logger.info(String.format("%s gets a treat.", patroldog1.getName()));
+        String verb = jail1.getInmates().size() > 1 ? "are" : "is";
+        logger.info(String.format("There %s now %d inmate(s) in the jail. Number of jails: %d.", verb, jail1.getInmates().size(), Jail.getTotalJails()));
+        LogReader logReader = new LogReader();
+        logReader.countUniqueWords("./target/police_station.log");
+    }
+}
+```
