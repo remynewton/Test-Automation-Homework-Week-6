@@ -411,7 +411,7 @@ public class Officer extends Person {
 }
 ```
 
-I also extracted info in the Main class about the Officer class and created an object and call method using the only reflection. I changed the constructor for Officer.java to private for demonstration purposes.
+I also extracted info in the Main class about the Officer class and created an object and call method using the only reflection. In doing so I also added 3 more collection streamings!
 
 ```
 package com.laba.solvd;
@@ -426,6 +426,7 @@ import java.io.*;
 import org.apache.log4j.Logger;
 import java.util.*;
 import java.lang.reflect.*;
+import java.util.stream.Collectors;
 
 import static com.laba.solvd.hw.Beast.PoliceDog.Breed.GERMAN_SHEPHERD;
 import static com.laba.solvd.hw.PoliceStation.dogs;
@@ -437,47 +438,29 @@ public class Main {
         Class<?> officerClass = Officer.class;
         // Extract information about fields
         Field[] fields = officerClass.getDeclaredFields();
-        for (Field field : fields) {
-            int modifiers = field.getModifiers();
-            String fieldName = field.getName();
-            String fieldType = field.getType().getSimpleName();
-            logger.info("Field: " + Modifier.toString(modifiers) + " " + fieldType + " " + fieldName);
-        }
+        Arrays.stream(fields)
+                .map(field -> Modifier.toString(field.getModifiers()) + " " + field.getType().getSimpleName() + " " + field.getName())
+                .forEach(logger::info);
         // Extract information about constructors
         Constructor<?>[] constructors = officerClass.getDeclaredConstructors();
-        for (Constructor<?> constructor : constructors) {
-            int modifiers = constructor.getModifiers();
-            String constructorName = constructor.getName();
-            Parameter[] parameters = constructor.getParameters();
-
-            StringBuilder parameterTypes = new StringBuilder();
-            for (Parameter parameter : parameters) {
-                parameterTypes.append(parameter.getType().getSimpleName()).append(", ");
-            }
-            if (parameterTypes.length() > 0) {
-                parameterTypes.setLength(parameterTypes.length() - 2);
-            }
-
-            logger.info("Constructor: " + Modifier.toString(modifiers) + " " + constructorName + "(" + parameterTypes + ")");
-        }
+        Arrays.stream(constructors)
+                .map(constructor -> {
+                    String parameterTypes = Arrays.stream(constructor.getParameters())
+                            .map(parameter -> parameter.getType().getSimpleName())
+                            .collect(Collectors.joining(", "));
+                    return Modifier.toString(constructor.getModifiers()) + " " + constructor.getName() + "(" + parameterTypes + ")";
+                })
+                .forEach(logger::info);
         // Extract information about methods
         Method[] methods = officerClass.getDeclaredMethods();
-        for (Method method : methods) {
-            int modifiers = method.getModifiers();
-            String methodName = method.getName();
-            String returnType = method.getReturnType().getSimpleName();
-            Parameter[] parameters = method.getParameters();
-
-            StringBuilder parameterTypes = new StringBuilder();
-            for (Parameter parameter : parameters) {
-                parameterTypes.append(parameter.getType().getSimpleName()).append(", ");
-            }
-            if (parameterTypes.length() > 0) {
-                parameterTypes.setLength(parameterTypes.length() - 2);
-            }
-
-            logger.info("Method: " + Modifier.toString(modifiers) + " " + returnType + " " + methodName + "(" + parameterTypes + ")");
-        }
+        Arrays.stream(methods)
+                .map(method -> {
+                    String parameterTypes = Arrays.stream(method.getParameters())
+                            .map(parameter -> parameter.getType().getSimpleName())
+                            .collect(Collectors.joining(", "));
+                    return Modifier.toString(method.getModifiers()) + " " + method.getReturnType().getSimpleName() + " " + method.getName() + "(" + parameterTypes + ")";
+                })
+                .forEach(logger::info);
         Constructor<?> officerConstructor = officerClass.getDeclaredConstructor(String.class, String.class, String.class, int.class, Officer.Rank.class);
         officerConstructor.setAccessible(true);
         Officer officer1 = (Officer) officerConstructor.newInstance("John Doe", "06/12/1981", "123 Main St", 12345, Officer.Rank.PATROL);
