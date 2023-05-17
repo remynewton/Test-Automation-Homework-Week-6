@@ -496,6 +496,8 @@ public class Main {
         ArrayList<ICrime> crimes1 = new ArrayList<>();
         crimes1.add(new Crime(Crime.Type.JAVA_INSTR));
         Criminal criminal1 = new Criminal("Andrei Trukhanovich", "07/17/1991", "456 Elm St", crimes1);
+        boolean foundCrime = criminal1.findCrime(crime -> crime.getType().equals(Crime.Type.JAVA_INSTR));
+        logger.info(String.format("It's %s that the crime Java Instruction was committed by %s.", foundCrime, criminal1.getName()));
         Victim victim1 = new Victim("Remy Newton", "05/22/1997", "789 Oak Ave", "9876");
         Case case1 = new Case("repeated Java instruction", officer1, criminal1, victim1, false);
         PoliceStation station = new PoliceStation();
@@ -519,4 +521,16 @@ public class Main {
         logReader.countUniqueWords("./target/police_station.log");
     }
 }
+```
+
+I also added a custom lambda function with generics to the Criminal class:
+```
+public <T extends Crime> boolean findCrime(Predicate<T> predicate) {
+        for (ICrime crime : crimes) {
+            if (predicate.test((T) crime)) {
+                return true;
+            }
+        }
+        return false;
+    }
 ```
