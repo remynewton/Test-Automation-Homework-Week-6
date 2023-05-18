@@ -1,6 +1,6 @@
 package com.laba.solvd.hw;
 
-import com.laba.solvd.hw.Beast.PoliceDog;
+import com.laba.solvd.hw.Beast.*;
 import com.laba.solvd.hw.Case.*;
 import com.laba.solvd.hw.Jail.Jail;
 import com.laba.solvd.hw.Person.*;

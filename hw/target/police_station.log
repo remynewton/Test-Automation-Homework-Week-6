@@ -145,4 +145,159 @@ Number of unique words: 1542023-05-15 21:55:28 INFO  Main:26 - Found a German Sh
 2023-05-15 21:55:28 INFO  Main:47 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
 2023-05-15 21:55:28 INFO  Main:49 - Fido gets a treat.
 2023-05-15 21:55:28 INFO  Main:51 - There is now 1 inmate(s) in the jail. Number of jails: 1.
-Number of unique words: 156
+Number of unique words: 1562023-05-17 14:43:10 INFO  Main:26 - Found a German Shepherd: Fido
+2023-05-17 14:43:10 INFO  Main:43 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 14:43:10 INFO  Main:44 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 14:43:10 INFO  Main:45 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 14:43:10 INFO  Main:46 - Patrolling the area...
+2023-05-17 14:43:10 INFO  Main:47 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 14:43:10 INFO  Main:49 - Fido gets a treat.
+2023-05-17 14:43:10 INFO  Main:51 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 1612023-05-17 15:16:34 INFO  Main:28 - Field: private int badgeNumber
+2023-05-17 15:16:34 INFO  Main:28 - Field: private Rank rank
+2023-05-17 15:16:34 INFO  Main:45 - Constructor: private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 15:16:34 INFO  Main:63 - Method: public boolean equals(Object)
+2023-05-17 15:16:34 INFO  Main:63 - Method: public String toString()
+2023-05-17 15:16:34 INFO  Main:63 - Method: public int hashCode()
+2023-05-17 15:16:34 INFO  Main:63 - Method: public String getProfile()
+2023-05-17 15:16:34 INFO  Main:63 - Method: public Rank getRank()
+2023-05-17 15:16:34 INFO  Main:63 - Method: public void setRank(Rank)
+2023-05-17 15:16:34 INFO  Main:63 - Method: public int getBadgeNumber()
+2023-05-17 15:16:34 INFO  Main:63 - Method: public void setBadgeNumber(int)
+2023-05-17 15:16:34 INFO  Main:70 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 15:16:34 INFO  Main:76 - Found a German Shepherd: Fido
+2023-05-17 15:16:34 INFO  Main:93 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 15:16:34 INFO  Main:94 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 15:16:34 INFO  Main:95 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 15:16:34 INFO  Main:96 - Patrolling the area...
+2023-05-17 15:16:34 INFO  Main:97 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 15:16:34 INFO  Main:99 - Fido gets a treat.
+2023-05-17 15:16:34 INFO  Main:101 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 2002023-05-17 16:00:00 INFO  Main:28 - Field: private int badgeNumber
+2023-05-17 16:00:00 INFO  Main:28 - Field: private Rank rank
+2023-05-17 16:00:00 INFO  Main:45 - Constructor: private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 16:00:00 INFO  Main:63 - Method: public boolean equals(Object)
+2023-05-17 16:00:00 INFO  Main:63 - Method: public String toString()
+2023-05-17 16:00:00 INFO  Main:63 - Method: public int hashCode()
+2023-05-17 16:00:00 INFO  Main:63 - Method: public void setRank(Rank)
+2023-05-17 16:00:00 INFO  Main:63 - Method: public String getProfile()
+2023-05-17 16:00:00 INFO  Main:63 - Method: public Rank getRank()
+2023-05-17 16:00:00 INFO  Main:63 - Method: public int getBadgeNumber()
+2023-05-17 16:00:00 INFO  Main:63 - Method: public void setBadgeNumber(int)
+2023-05-17 16:00:00 INFO  Main:70 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 16:00:00 INFO  Main:76 - Found a German Shepherd: Fido
+2023-05-17 16:00:00 INFO  Main:84 - It's null that the crime Java Instruction was committed by Andrei Trukhanovich.
+2023-05-17 16:00:00 INFO  Main:95 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 16:00:00 INFO  Main:96 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 16:00:00 INFO  Main:97 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 16:00:00 INFO  Main:98 - Patrolling the area...
+2023-05-17 16:00:00 INFO  Main:99 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 16:00:00 INFO  Main:101 - Fido gets a treat.
+2023-05-17 16:00:00 INFO  Main:103 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 2122023-05-17 16:01:32 INFO  Main:28 - Field: private int badgeNumber
+2023-05-17 16:01:32 INFO  Main:28 - Field: private Rank rank
+2023-05-17 16:01:32 INFO  Main:45 - Constructor: private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 16:01:32 INFO  Main:63 - Method: public boolean equals(Object)
+2023-05-17 16:01:32 INFO  Main:63 - Method: public String toString()
+2023-05-17 16:01:32 INFO  Main:63 - Method: public int hashCode()
+2023-05-17 16:01:32 INFO  Main:63 - Method: public int getBadgeNumber()
+2023-05-17 16:01:32 INFO  Main:63 - Method: public void setBadgeNumber(int)
+2023-05-17 16:01:32 INFO  Main:63 - Method: public void setRank(Rank)
+2023-05-17 16:01:32 INFO  Main:63 - Method: public String getProfile()
+2023-05-17 16:01:32 INFO  Main:63 - Method: public Rank getRank()
+2023-05-17 16:01:32 INFO  Main:70 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 16:01:32 INFO  Main:76 - Found a German Shepherd: Fido
+2023-05-17 16:01:32 INFO  Main:84 - It's false that the crime Java Instruction was committed by Andrei Trukhanovich.
+2023-05-17 16:01:32 INFO  Main:95 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 16:01:32 INFO  Main:96 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 16:01:32 INFO  Main:97 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 16:01:32 INFO  Main:98 - Patrolling the area...
+2023-05-17 16:01:32 INFO  Main:99 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 16:01:32 INFO  Main:101 - Fido gets a treat.
+2023-05-17 16:01:32 INFO  Main:103 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 2152023-05-17 16:03:29 INFO  Main:28 - Field: private int badgeNumber
+2023-05-17 16:03:29 INFO  Main:28 - Field: private Rank rank
+2023-05-17 16:03:29 INFO  Main:45 - Constructor: private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 16:03:29 INFO  Main:63 - Method: public boolean equals(Object)
+2023-05-17 16:03:29 INFO  Main:63 - Method: public String toString()
+2023-05-17 16:03:29 INFO  Main:63 - Method: public int hashCode()
+2023-05-17 16:03:29 INFO  Main:63 - Method: public int getBadgeNumber()
+2023-05-17 16:03:29 INFO  Main:63 - Method: public void setBadgeNumber(int)
+2023-05-17 16:03:29 INFO  Main:63 - Method: public String getProfile()
+2023-05-17 16:03:29 INFO  Main:63 - Method: public Rank getRank()
+2023-05-17 16:03:29 INFO  Main:63 - Method: public void setRank(Rank)
+2023-05-17 16:03:30 INFO  Main:70 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 16:03:30 INFO  Main:76 - Found a German Shepherd: Fido
+2023-05-17 16:03:30 INFO  Main:84 - It's true that the crime Java Instruction was committed by Andrei Trukhanovich.
+2023-05-17 16:03:30 INFO  Main:95 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 16:03:30 INFO  Main:96 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 16:03:30 INFO  Main:97 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 16:03:30 INFO  Main:98 - Patrolling the area...
+2023-05-17 16:03:30 INFO  Main:99 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 16:03:30 INFO  Main:101 - Fido gets a treat.
+2023-05-17 16:03:30 INFO  Main:103 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 2192023-05-17 16:55:10 INFO  Main:183 - private int badgeNumber
+2023-05-17 16:55:10 INFO  Main:183 - private Rank rank
+2023-05-17 16:55:10 INFO  Main:183 - private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 16:55:10 INFO  Main:183 - public boolean equals(Object)
+2023-05-17 16:55:10 INFO  Main:183 - public String toString()
+2023-05-17 16:55:10 INFO  Main:183 - public int hashCode()
+2023-05-17 16:55:10 INFO  Main:183 - public int getBadgeNumber()
+2023-05-17 16:55:10 INFO  Main:183 - public void setBadgeNumber(int)
+2023-05-17 16:55:10 INFO  Main:183 - public String getProfile()
+2023-05-17 16:55:10 INFO  Main:183 - public Rank getRank()
+2023-05-17 16:55:10 INFO  Main:183 - public void setRank(Rank)
+2023-05-17 16:55:10 INFO  Main:53 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 16:55:10 INFO  Main:59 - Found a German Shepherd: Fido
+2023-05-17 16:55:10 INFO  Main:67 - It's true that the crime Java Instruction was committed by Andrei Trukhanovich.
+2023-05-17 16:55:10 INFO  Main:78 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 16:55:10 INFO  Main:79 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 16:55:10 INFO  Main:80 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 16:55:10 INFO  Main:81 - Patrolling the area...
+2023-05-17 16:55:10 INFO  Main:82 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 16:55:10 INFO  Main:84 - Fido gets a treat.
+2023-05-17 16:55:10 INFO  Main:86 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 2312023-05-17 17:59:45 INFO  Main:183 - private int badgeNumber
+2023-05-17 17:59:45 INFO  Main:183 - private Rank rank
+2023-05-17 17:59:45 INFO  Main:183 - private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 17:59:45 INFO  Main:183 - public boolean equals(Object)
+2023-05-17 17:59:45 INFO  Main:183 - public String toString()
+2023-05-17 17:59:45 INFO  Main:183 - public int hashCode()
+2023-05-17 17:59:45 INFO  Main:183 - public void setRank(Rank)
+2023-05-17 17:59:45 INFO  Main:183 - public String getProfile()
+2023-05-17 17:59:45 INFO  Main:183 - public Rank getRank()
+2023-05-17 17:59:45 INFO  Main:183 - public void setBadgeNumber(int)
+2023-05-17 17:59:45 INFO  Main:183 - public int getBadgeNumber()
+2023-05-17 17:59:45 INFO  Main:53 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 17:59:45 INFO  Main:58 - Found a German Shepherd: Fido
+2023-05-17 17:59:45 INFO  Main:66 - It's true that the crime Java Instruction was committed by Andrei Trukhanovich.
+2023-05-17 17:59:45 INFO  Main:77 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 17:59:45 INFO  Main:78 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 17:59:45 INFO  Main:79 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 17:59:45 INFO  Main:80 - Patrolling the area...
+2023-05-17 17:59:45 INFO  Main:81 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 17:59:45 INFO  Main:83 - Fido gets a treat.
+2023-05-17 17:59:45 INFO  Main:85 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 2382023-05-17 18:06:18 INFO  Main:183 - private int badgeNumber
+2023-05-17 18:06:18 INFO  Main:183 - private Rank rank
+2023-05-17 18:06:18 INFO  Main:183 - private com.laba.solvd.hw.Person.Officer(String, String, String, int, Rank)
+2023-05-17 18:06:18 INFO  Main:183 - public boolean equals(Object)
+2023-05-17 18:06:18 INFO  Main:183 - public String toString()
+2023-05-17 18:06:18 INFO  Main:183 - public int hashCode()
+2023-05-17 18:06:18 INFO  Main:183 - public int getBadgeNumber()
+2023-05-17 18:06:18 INFO  Main:183 - public void setBadgeNumber(int)
+2023-05-17 18:06:18 INFO  Main:183 - public void setRank(Rank)
+2023-05-17 18:06:18 INFO  Main:183 - public String getProfile()
+2023-05-17 18:06:18 INFO  Main:183 - public Rank getRank()
+2023-05-17 18:06:18 INFO  Main:54 - Officer profile: Officer John Doe (PATROL), Badge #12345
+2023-05-17 18:06:18 INFO  Main:57 - Beast Count: 1
+2023-05-17 18:06:18 INFO  Main:60 - Found a German Shepherd: Fido
+2023-05-17 18:06:18 INFO  Main:68 - It's true that the crime Java Instruction was committed by Andrei Trukhanovich.
+2023-05-17 18:06:18 INFO  Main:79 - Officer John Doe from PATROL department is investigating a case of repeated Java instruction. That's Officer John Doe (PATROL), Badge #12345.
+2023-05-17 18:06:18 INFO  Main:80 - The victim of the crime is Remy Newton, Age: 25, current address: 789 Oak Ave, Incident report number: 9876.
+2023-05-17 18:06:18 INFO  Main:81 - Officer John Doe uses his trusty police dog Fido to patrol the area for the criminal.
+2023-05-17 18:06:18 INFO  Main:82 - Patrolling the area...
+2023-05-17 18:06:18 INFO  Main:83 - The officer has apprehended the criminal. The criminal Andrei Trukhanovich has committed 1 crime(s), including: The vile act of teaching the Java programming language (Severity: MEDIUM).
+2023-05-17 18:06:18 INFO  Main:85 - Fido gets a treat.
+2023-05-17 18:06:18 INFO  Main:87 - There is now 1 inmate(s) in the jail. Number of jails: 1.
+Number of unique words: 247

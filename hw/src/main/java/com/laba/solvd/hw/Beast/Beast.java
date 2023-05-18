@@ -8,29 +8,19 @@ import java.time.format.DateTimeParseException;
 public class Beast {
     protected String name;
     protected LocalDate DOB;
-    static private Period age;
+    private Period age;
     protected boolean furry;
+    public static int beastCount;
 
     public Beast(String name, String DOB, boolean furry) {
         this.name = name;
         setDOB(DOB);
         this.furry = furry;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        beastCount++;
     }
 
     public int getAge() {
         return age.getYears();
-    }
-
-    public LocalDate getDOB() {
-        return DOB;
     }
 
     public void setDOB(String inputDOB) throws DateTimeParseException {

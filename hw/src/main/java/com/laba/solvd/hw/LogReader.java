@@ -16,9 +16,8 @@ import java.util.Set;
 public class LogReader {
     public void countUniqueWords(String logFilePath) throws LogReaderException {
         File file = new File(logFilePath);
-        InputStream inputStream = null;
-        try {
-            inputStream = FileUtils.openInputStream(file);
+
+        try (InputStream inputStream = FileUtils.openInputStream(file)) {
             String text = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
             String[] words = StringUtils.split(text);
             Set<String> uniqueWords = new HashSet<>();
@@ -28,8 +27,6 @@ public class LogReader {
             System.out.println("Result written to file.");
         } catch (IOException e) {
             throw new LogReaderException("Failed to read or write to file.", e);
-        } finally {
-            IOUtils.closeQuietly(inputStream);
         }
     }
 }

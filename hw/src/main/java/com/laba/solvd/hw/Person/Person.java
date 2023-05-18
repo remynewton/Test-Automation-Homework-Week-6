@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 public abstract class Person {
     private String name;
-    private LocalDate DOB;
+    protected LocalDate DOB;
     private String address;
     static protected Period age;
 

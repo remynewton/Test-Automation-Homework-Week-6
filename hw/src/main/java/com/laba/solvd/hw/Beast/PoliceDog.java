@@ -13,6 +13,14 @@ public class PoliceDog extends Beast implements SearchAndRescue, Detection, Patr
         this.trainings = trainings;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName() {
+        this.name = name;
+    }
+
     public List<String> getTrainings() {
         return trainings;
     }

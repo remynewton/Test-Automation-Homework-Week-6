@@ -1,8 +1,10 @@
 package com.laba.solvd.hw.Person;
+import com.laba.solvd.hw.Case.Crime;
 import com.laba.solvd.hw.Case.ICrime;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
+import java.util.function.Predicate;
 
 public class Criminal extends Person {
     private ArrayList<ICrime> crimes;
@@ -53,5 +55,14 @@ public class Criminal extends Person {
             joiner.add(crime.getDescription() + " (Severity: " + crime.getSeverity() + ")");
         }
         return "The criminal " + getName() + " has committed " + crimeCount + " crime(s), including: " + joiner.toString() + ".";
+    }
+
+    public <T extends Crime> boolean findCrime(Predicate<T> predicate) {
+        for (ICrime crime : crimes) {
+            if (predicate.test((T) crime)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
