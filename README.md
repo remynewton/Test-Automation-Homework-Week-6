@@ -557,8 +557,13 @@ public class LogReader {
 I moved the getters and setters for the name variable in the Beast class to the PoliceDog class, so that I could justify having it be protected. I also implemented a new static variable called beastCount, as suggested by my mentor.
 
 The new homework prompt is as follows:
+
 Practical tasks:
+
 Create 2 Threads using Runnable and Thread.
+
 Create Connection Pool. Use collection from java.util.concurrent package. Connection class may be mocked. The pool should be threadsafe and lazy initialized.
+
 Initialize Connection Pool object of size 5. Load Connection Pool using single threads and Java Thread Pool (7 threads in total). 5 threads should be able to get the connection. 2 Threads should wait for the next available connection. The program should wait as well.
+
 Implement previous point but with interfaces Future and CompletableStage.
