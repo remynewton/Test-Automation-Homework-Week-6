@@ -428,6 +428,7 @@ import java.util.*;
 import java.lang.reflect.*;
 import java.util.stream.Collectors;
 
+import static com.laba.solvd.hw.Beast.Beast.beastCount;
 import static com.laba.solvd.hw.Beast.PoliceDog.Breed.GERMAN_SHEPHERD;
 import static com.laba.solvd.hw.PoliceStation.dogs;
 
@@ -467,9 +468,9 @@ public class Main {
         Method getProfileMethod = officerClass.getDeclaredMethod("getProfile");
         String profile = (String) getProfileMethod.invoke(officer1);
         logger.info("Officer profile: " + profile);
-        List<String> trainings1 = Arrays.asList("Patrol");
-        PoliceDog patroldog1 = new PoliceDog("Fido", "05/17/2019", true, GERMAN_SHEPHERD, trainings1);
+        PoliceDog patroldog1 = new PoliceDog("Fido", "05/17/2019", true, GERMAN_SHEPHERD, List.of("Patrol"));
         dogs.add(patroldog1);
+        logger.info("Beast Count: " + beastCount);
         PoliceDog dog1 = PoliceDog.findElement(dogs, dog -> dog.getBreed() == GERMAN_SHEPHERD);
         if (dog1 != null) {
             logger.info(String.format("Found a German Shepherd: " + dog1.getName()));
@@ -553,3 +554,4 @@ public class LogReader {
 }
 ```
 
+I moved the getters and setters for the name variable in the Beast class to the PoliceDog class, so that I could justify having it be protected. I also implemented a new static variable called beastCount, as suggested by my mentor.
