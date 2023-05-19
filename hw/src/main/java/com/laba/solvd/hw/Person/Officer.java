@@ -1,8 +1,12 @@
 package com.laba.solvd.hw.Person;
 
-public class Officer extends Person {
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Officer extends Person implements Runnable {
     private int badgeNumber;
     private Rank rank;
+    public byte position;
+    private volatile boolean isRunning = true;
 
     private Officer(String name, String DOB, String address, int badgeNumber, Rank rank) {
         super(name, DOB, address);
@@ -76,5 +80,21 @@ public class Officer extends Person {
         public boolean isHigherThan(Rank otherRank) {
             return this.level > otherRank.level;
         }
+    }
+
+    public void run() {
+        while (isRunning) {
+            System.out.println("Officer " + getName() + " is on the chase...");
+            this.position = (byte) ThreadLocalRandom.current().nextInt(0, 21);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void stopRunning() {
+        isRunning = false;
     }
 }

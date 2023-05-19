@@ -80,6 +80,19 @@ public class Main {
         logger.info(String.format("The victim of the crime is %s.", victim1.getProfile()));
         logger.info(String.format("Officer %s uses his trusty police dog %s to patrol the area for the criminal.", officer1.getName(), patroldog1.getName()));
         logger.info(patroldog1.patrol());
+        Thread thread1 = new Thread(criminal1);
+        Thread thread2 = new Thread(officer1);
+        thread1.start();
+        thread2.start();
+        while (true) {
+            if (officer1.position == criminal1.position) {
+                criminal1.stopRunning();
+                officer1.stopRunning();
+                break;
+            }
+        }
+        thread1.join();
+        thread2.join();
         logger.info(String.format("The officer has apprehended the criminal. %s", criminal1.getProfile()));
         jail1.addInmate(criminal1);
         logger.info(String.format("%s gets a treat.", patroldog1.getName()));

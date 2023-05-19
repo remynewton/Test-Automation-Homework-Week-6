@@ -4,11 +4,15 @@ import com.laba.solvd.hw.Case.ICrime;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 
-public class Criminal extends Person {
+public class Criminal extends Person implements Runnable {
     private ArrayList<ICrime> crimes;
     private int crimeCount;
+    public byte position;
+    private volatile boolean isRunning = true;
+
 
     public Criminal(String name, String DOB, String address, ArrayList<ICrime> crimes) {
         super(name, DOB, address);
@@ -64,5 +68,22 @@ public class Criminal extends Person {
             }
         }
         return false;
+    }
+
+    public void run() {
+        this.position = 12;
+        while (isRunning) {
+            System.out.println("The criminal " + getName() + " is running...");
+            this.position = (byte) ThreadLocalRandom.current().nextInt(0, 21);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void stopRunning() {
+        isRunning = false;
     }
 }
