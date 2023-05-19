@@ -567,3 +567,44 @@ Create Connection Pool. Use collection from java.util.concurrent package. Connec
 Initialize Connection Pool object of size 5. Load Connection Pool using single threads and Java Thread Pool (7 threads in total). 5 threads should be able to get the connection. 2 Threads should wait for the next available connection. The program should wait as well.
 
 Implement previous point but with interfaces Future and CompletableStage.
+
+I made Criminal and Officer implement Runnable with a little program where the Officer chases the Criminal.
+
+Example code:
+```
+public byte position;
+private volatile boolean isRunning = true;
+
+public void run() {
+        while (isRunning) {
+            System.out.println("Officer " + getName() + " is on the chase...");
+            this.position = (byte) ThreadLocalRandom.current().nextInt(0, 21);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void stopRunning() {
+        isRunning = false;
+    }
+```
+
+Then I implemented it in my Main method.
+```
+        Thread thread1 = new Thread(criminal1);
+        Thread thread2 = new Thread(officer1);
+        thread1.start();
+        thread2.start();
+        while (true) {
+            if (officer1.position == criminal1.position) {
+                criminal1.stopRunning();
+                officer1.stopRunning();
+                break;
+            }
+        }
+        thread1.join();
+        thread2.join();
+```
