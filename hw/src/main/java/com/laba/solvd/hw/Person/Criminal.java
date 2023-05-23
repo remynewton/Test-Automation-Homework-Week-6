@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.StringJoiner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class Criminal extends Person implements Runnable {
     private ArrayList<ICrime> crimes;
@@ -71,19 +72,23 @@ public class Criminal extends Person implements Runnable {
     }
 
     public void run() {
-        this.position = 12;
-        while (isRunning) {
+        Stream.generate(() -> {
             System.out.println("The criminal " + getName() + " is running...");
-            this.position = (byte) ThreadLocalRandom.current().nextInt(0, 21);
+            position = (byte) ThreadLocalRandom.current().nextInt(0, 3);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }
+            return position;
+        }).anyMatch(pos -> !isRunning);
     }
 
     public void stopRunning() {
         isRunning = false;
+    }
+
+    public byte getPosition() {
+        return position;
     }
 }

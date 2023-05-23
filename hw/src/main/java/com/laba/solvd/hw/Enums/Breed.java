@@ -1,0 +1,14 @@
+package com.laba.solvd.hw.Enums;
+
+public enum Breed {
+    BELGIAN_MALINOIS,
+    BLOODHOUND,
+    BORDER_COLLIE,
+    BOXER,
+    DOBERMAN_PINSCHER,
+    ENGLISH_SPRINGER_SPANIEL,
+    GERMAN_SHEPHERD,
+    LABRADOR_RETRIEVER,
+    OTHER,
+    ROTWEILLER
+}

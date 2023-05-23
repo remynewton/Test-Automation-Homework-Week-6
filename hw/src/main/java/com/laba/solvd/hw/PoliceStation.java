@@ -5,6 +5,7 @@ import com.laba.solvd.hw.Case.*;
 import com.laba.solvd.hw.Jail.Jail;
 import com.laba.solvd.hw.Person.*;
 import com.laba.solvd.hw.Exception.PersonTypeException;
+import com.laba.solvd.hw.Enums.PersonType;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,46 +58,6 @@ public class PoliceStation {
 
     public void removePerson(Person p) {
         persons.removeIf(person -> person.getName().equals(p.getName()));
-    }
-
-    public enum PersonType {
-        OFFICER("Officer", new HashSet<Officer>()),
-        CRIMINAL("Criminal", new HashSet<Criminal>()),
-        VICTIM("Victim", new HashSet<Victim>());
-
-        private final String type;
-        private final Set<Person> personSet;
-
-        private PersonType(String type, Set<? extends Person> personSet) {
-            this.type = type;
-            this.personSet = (Set<Person>) personSet;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public Set<Person> getPersonSet() {
-            return personSet;
-        }
-
-        public void addPerson(Person person) {
-            personSet.add(person);
-        }
-
-        public void removePerson(Person person) {
-            personSet.remove(person);
-        }
-
-        public boolean containsPerson(Person person) {
-            return personSet.contains(person);
-        }
-
-        public <T extends Person> T getPersonByName(String name) {
-            return (T) personSet.stream()
-                    .filter(p -> p.getName().equals(name))
-                    .findFirst().orElse(null);
-        }
     }
 
     public void printAllPersons() {

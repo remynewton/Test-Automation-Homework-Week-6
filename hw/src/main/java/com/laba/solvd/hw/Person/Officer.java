@@ -1,6 +1,11 @@
 package com.laba.solvd.hw.Person;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Stream;
+
+import com.laba.solvd.hw.Enums.*;
 
 public class Officer extends Person implements Runnable {
     private int badgeNumber;
@@ -54,47 +59,24 @@ public class Officer extends Person implements Runnable {
         return false;
     }
 
-    public enum Rank {
-        PATROL("Patrol", 0),
-        CONSTABLE("Constable", 1),
-        SERGEANT("Sergeant", 2),
-        LIEUTENANT("Lieutenant", 3),
-        CAPTAIN("Captain", 4);
-
-        private final String label;
-        private final int level;
-
-        Rank(String label, int level) {
-            this.label = label;
-            this.level = level;
-        }
-
-        public String getLabel() {
-            return label;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-        public boolean isHigherThan(Rank otherRank) {
-            return this.level > otherRank.level;
-        }
-    }
-
     public void run() {
-        while (isRunning) {
+        Stream.generate(() -> {
             System.out.println("Officer " + getName() + " is on the chase...");
-            this.position = (byte) ThreadLocalRandom.current().nextInt(0, 21);
+            position = (byte) ThreadLocalRandom.current().nextInt(0, 3);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }
+            return position;
+        }).anyMatch(pos -> !isRunning);
     }
 
     public void stopRunning() {
         isRunning = false;
+    }
+
+    public byte getPosition() {
+        return position;
     }
 }

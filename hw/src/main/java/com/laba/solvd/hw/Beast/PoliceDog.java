@@ -2,6 +2,7 @@ package com.laba.solvd.hw.Beast;
 
 import java.util.List;
 import java.util.function.Predicate;
+import com.laba.solvd.hw.Enums.Breed;
 
 public class PoliceDog extends Beast implements SearchAndRescue, Detection, Patrol, Cadaver {
     private Breed breed;
@@ -80,18 +81,5 @@ public class PoliceDog extends Beast implements SearchAndRescue, Detection, Patr
         } else {
             System.out.println("This dog is not trained for cadaver detection.");
         }
-    }
-
-    public enum Breed {
-        BELGIAN_MALINOIS,
-        BLOODHOUND,
-        BORDER_COLLIE,
-        BOXER,
-        DOBERMAN_PINSCHER,
-        ENGLISH_SPRINGER_SPANIEL,
-        GERMAN_SHEPHERD,
-        LABRADOR_RETRIEVER,
-        OTHER,
-        ROTWEILLER
     }
 }
