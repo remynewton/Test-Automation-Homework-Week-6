@@ -998,3 +998,9 @@ public class ConnectionPool {
     }
 }
 ```
+
+Fixed the following:
+
+1. Fixed messy logic in enum
+2. Got .gitignore working
+3. Added synchronization block
