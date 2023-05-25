@@ -999,6 +999,7 @@ public class ConnectionPool {
 }
 ```
 #Hopefully Last Update
+
 Fixed the following:
 
 1. Fixed messy logic in enum
