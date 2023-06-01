@@ -1005,3 +1005,7 @@ Fixed the following:
 1. Fixed messy logic in enum
 2. Got .gitignore working
 3. Added synchronization block
+
+# Last Update
+
+Edited .gitignore to ignore entire .idea directory
